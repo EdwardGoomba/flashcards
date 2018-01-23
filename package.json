@@ -1,0 +1,22 @@
+{
+  "name": "flashcards",
+  "version": "1.0.0",
+  "description": "Modules for flashcard application.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdwardGoomba/flashcards.git"
+  },
+  "author": "Edward Danilyuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EdwardGoomba/flashcards/issues"
+  },
+  "homepage": "https://github.com/EdwardGoomba/flashcards#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
