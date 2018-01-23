@@ -2,8 +2,16 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (request, response) => {
-  response.send('I love Treehousea');
+app.set('view engine', 'pug');
+
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
-app.listen(3000);
+app.get('/cards', (req, res) => {
+  res.render('card', { prompt: 'Who is burried in Grants Tomb', hint: 'Think about whos tomb it is.'});
+});
+
+app.listen(3000, () => {
+  console.log('The application is running on localhost: 3000');
+});
