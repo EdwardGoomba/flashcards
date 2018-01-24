@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,10 +9,6 @@ router.get('/', (req, res) => {
     res.redirect('/hello');
   }
 
-});
-
-router.get('/cards', (req, res) => {
-  res.render('card', { prompt: 'Who is burried in Grants Tomb', hint: 'Think about whos tomb it is.'});
 });
 
 router.get('/hello', (req, res) => {
