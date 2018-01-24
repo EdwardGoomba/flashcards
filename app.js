@@ -9,8 +9,26 @@ app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+  console.log('Hello');
+  const err = new Error('Oh noes!');
+  err.status = 500;
+  next(err);
+});
+
+app.use((req, res, next) => {
+  console.log('World');
+  next();
+});
+
 app.get('/', (req, res) => {
-  res.render('index');
+  const name = req.cookies.username;
+  if (name) {
+    res.render('index', { name });
+  } else {
+    res.redirect('/hello');
+  }
+
 });
 
 app.get('/cards', (req, res) => {
@@ -18,12 +36,29 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-  res.render('hello', { name: req.cookies.username });
+  const name = req.cookies.username;
+  if (name) {
+    res.redirect('/');
+  } else {
+    res.render('hello');
+  }
 });
 
 app.post('/hello', (req, res) => {
+  // store username as cookie on post
   res.cookie('username', req.body.username);
-  res.render('hello', { name: req.body.username });
+  res.redirect('/');
+});
+
+app.post('/goodbye', (req, res) => {
+  res.clearCookie('username');
+  res.redirect('/hello');
+});
+
+app.use((err, req, res, next) => {
+  res.locals.error = err
+  res.status(err.status);
+  res.render('error');
 });
 
 app.listen(3000, () => {
